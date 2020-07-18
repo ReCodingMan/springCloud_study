@@ -11,6 +11,7 @@
         <module>springcloud-api</module>
         <module>springcloud-provider-dept-8001</module>
         <module>springcloud-consumer-dept-80</module>
+        <module>springcloud-eureka-7001</module>
     </modules>
 
     <!-- 打包方式 pom -->
@@ -34,8 +35,9 @@
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>Hoxton.SR6</version>
                 <type>pom</type>
-                <scope>runtime</scope>
+                <scope>import</scope>
             </dependency>
+
 
             <!-- SpringBoot -->
             <dependency>
