@@ -1,10 +1,10 @@
 server:
-  port: 7001
+  port: 7002
 
 # Eureka配置
 eureka:
   instance:
-    hostname: eureka7001.com
+    hostname: localhost
   client:
     register-with-eureka: false # 表示是否向 eureka 注册中心注册自己
     fetch-registry: false
