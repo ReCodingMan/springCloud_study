@@ -30,8 +30,12 @@ public class DeptController {
     }
 
     @GetMapping("/dept/get/{id}")
-    public Dept addDept(@PathVariable("id") Long id){
-        return deptService.queryById(id);
+    public Dept get(@PathVariable("id") Long id){
+        Dept dept = deptService.queryById(id);
+        if (dept == null) {
+            throw new RuntimeException("Fail");
+        }
+        return dept;
     }
 
     @GetMapping("/dept/list")

@@ -2,6 +2,7 @@ package com.cc1021.springcloud.controller;
 
 import com.cc1021.springcloud.pojo.Dept;
 import com.cc1021.springcloud.service.DeptService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -21,47 +22,27 @@ public class DeptController {
     @Autowired
     private DeptService deptService;
 
-    @Autowired
-    private DiscoveryClient client;
-
-    @PostMapping("/dept/add")
-    public boolean addDept(Dept dept){
-        return deptService.addDept(dept);
-    }
-
     @GetMapping("/dept/get/{id}")
-    public Dept addDept(@PathVariable("id") Long id){
-        return deptService.queryById(id);
-    }
+    @HystrixCommand(fallbackMethod = "hystrixGet")
+    public Dept get(@PathVariable("id") Long id) {
+        Dept dept = deptService.queryById(id);
 
-    @GetMapping("/dept/list")
-    public List<Dept> queryAll(){
-        return deptService.queryAll();
+        if (dept == null) {
+            throw new RuntimeException("id=>"+id+"不存在该用户，或者信息无法找到～");
+        }
+
+        return dept;
     }
 
     /**
-     * 注册进来的微服务，获取一些消息～
+     * 熔断备用方法
+     * @param id
      * @return
      */
-    @GetMapping("/dept/discovery")
-    public Object discovery() {
-        // 获取微服务列表的清单
-        List<String> services = client.getServices();
-        System.out.println("discovery=>services"+services);
-
-        // 得到一个具体的微服务信息，通过具体的微服务ID，applicationName
-        List<ServiceInstance> instances = client.getInstances("SPRINGCLOUD-PROVIDER-DEPT");
-
-        for (ServiceInstance instance : instances) {
-            System.out.println(
-                    instance.getHost()+"\t"+
-                    instance.getPort()+"\t"+
-                    instance.getUri()+"\t"+
-                    instance.getServiceId()
-            );
-        }
-
-        return this.client;
+    public Dept hystrixGet(@PathVariable("id") Long id) {
+        return new Dept()
+                .setDeptno(id)
+                .setDname("id=>"+id+"没有对应的信息，null--@Hystrix")
+                .setDb_source("no this database in MySQL");
     }
-
 }
