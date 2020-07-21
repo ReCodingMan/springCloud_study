@@ -1,6 +1,11 @@
 server:
   port: 80
 
+# 开启降级 feign.hystrix
+feign:
+  hystrix:
+    enabled: true
+
 # eureka配置
 eureka:
   client:
