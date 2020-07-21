@@ -13,7 +13,6 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableEurekaClient // eureka开启
 @EnableFeignClients(basePackages = {"com.cc1021.springcloud"})
-//@ComponentScan("com.cc1021.springcloud")
 public class FeignDeptConsumer_80 {
 
     public static void main(String[] args) {
