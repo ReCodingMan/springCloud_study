@@ -13,9 +13,18 @@
 
     <!-- 当前 Module 自己需要的依赖，如果父依赖中已经配置了版本，这里就不用写了 -->
     <dependencies>
+
+        <!-- Feign -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+            <version>1.4.7.RELEASE</version>
+        </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+
     </dependencies>
 </project>
