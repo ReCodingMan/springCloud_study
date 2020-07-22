@@ -13,11 +13,18 @@
 
     <dependencies>
 
+        <!-- hystrix -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-hystrix</artifactId>
+            <version>1.4.6.RELEASE</version>
+        </dependency>
+
         <!-- eureka -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
-            <version>1.4.7.RELEASE</version>
+            <version>1.4.6.RELEASE</version>
         </dependency>
         <!-- actuator 完善监控信息 -->
         <dependency>
