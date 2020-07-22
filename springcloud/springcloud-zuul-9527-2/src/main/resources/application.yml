@@ -20,4 +20,10 @@ info:
   app.name: cc1021-springcloud
   company.name: www.cc1021.com
 
-
+# zuul配置
+zuul:
+  routes:
+    mydept.serviceId: springcloud-provider-dept
+    mydept.path: /mydept/**
+  ignored-services: "*" # 隐藏全部～
+  prefix: /cc1021 # 设置公共前缀

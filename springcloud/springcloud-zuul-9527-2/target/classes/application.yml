@@ -19,3 +19,9 @@ eureka:
 info:
   app.name: cc1021-springcloud
   company.name: www.cc1021.com
+
+# zuul配置
+zuul:
+  routes:
+    mydept.serviceId: springcloud-provider-dept
+    mydept.path: /mydept/**
