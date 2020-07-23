@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="springcloud-config-server-3344" />
         <module name="springcloud-config-client-3355" />
+        <module name="springcloud-config-dept-8001" />
         <module name="springcloud-config-eureka-7001" />
         <module name="springcloud-zuul-9527-2" />
         <module name="springcloud-consumer-dept-feign" />
