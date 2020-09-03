@@ -30,12 +30,26 @@ public class DeptController {
     }
 
     @GetMapping("/dept/get/{id}")
-    public Dept get(@PathVariable("id") Long id){
-        Dept dept = deptService.queryById(id);
-        if (dept == null) {
-            throw new RuntimeException("Fail");
+    public Integer get(@PathVariable("id") Long id){
+        int num = 1;
+        try {
+            while(true) {
+                num++;
+            }
+        } catch (Throwable throwable) {
+            throw new RuntimeException(String.valueOf(throwable.getClass()));
         }
-        return dept;
+
+//        Dept dept = deptService.queryById(id);
+//        if (dept == null) {
+//            throw new RuntimeException("Fail");
+//        }
+//        return dept;
+    }
+
+    public Integer addInteger(Integer num) {
+        num++;
+        return this.addInteger(num);
     }
 
     @GetMapping("/dept/list")
